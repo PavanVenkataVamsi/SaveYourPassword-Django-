@@ -1,0 +1,53 @@
+{% include 'navbar.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  	<style>
+table, th, td {
+  border: 1px ;
+  padding: 25px;
+}
+table {
+  border-spacing: 25px;
+}
+</style>
+</head>
+<body>
+	<center>
+				
+		<h1>Welcome {{ user }}</h1>
+		<br>
+		{% if messages %}
+				{% for i in messages %}
+					<div class="alert alert-{{ i.tags }}" style="width: 20%">{{ i }}</div>
+					
+				{% endfor %}
+				{% endif %}
+		<br>
+		<div>
+			<table style="border-spacing: 5px;padding: 5px;">
+				<tr>
+					<th><h3><a href="{% url 'github' %}?data={{user}}">Github</a></h3></th>
+					<th><h3><a href="{% url 'insta' %}?data={{user}}">Instagram</a></h3></th>
+				</tr>
+				<tr>
+					<th><h3><a href="{% url 'facebook' %}?data={{user}}">Facebook</a></h3></th>
+					<th><h3><a href="{% url 'stack' %}?data={{user}}">Stack Over Flow</a></h3></th>
+				</tr>
+			</table>
+		</div>
+
+	</center>
+
+</body>
+</html>
+{% endblock content %}

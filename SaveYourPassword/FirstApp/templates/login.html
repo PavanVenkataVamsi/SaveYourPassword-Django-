@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm bg-light">
+  <ul class="navbar-nav mr-auto">
+    <li class="navbar-brand"><b>Save Your Password</b></li>
+  </ul>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">Register</a>
+    </li>
+  </ul>
+</nav>
+	<center>
+		<h3>Login Page</h3>
+				{% if messages %}
+				{% for i in messages %}
+					<div class="alert alert-{{ i.tags }}" style="width: 20%">{{ i }}</div>
+					
+				{% endfor %}
+				{% endif %}
+		<form action="{% url 'login' %}" method="POST">
+			{% csrf_token %}
+			Username:<br><input type="text" name="us"><br><br>
+			Password:<br><input type="password" name="pass" onmouseover="this.type='text'"
+       onmouseout="this.type='password'" placeholder="password"><br><br>
+			<br><input type="submit" name="submit"><br><br>
+			<br><a href="{% url 'forgetpwd' %}">forget Password</a>
+
+		</form>
+
+	</center>
+
+</body>
+</html>
